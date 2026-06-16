@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import { Menu, X, HardHat } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Navbar() {
@@ -37,13 +37,12 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-primary p-2 rounded-sm transform transition-transform group-hover:scale-105">
-              <HardHat className="w-6 h-6 text-secondary" strokeWidth={2.5} />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-white uppercase">
-              DJ SCAFFOLDING
-            </span>
+          <Link href="/" className="flex items-center group">
+            <img
+              src="/logo.png"
+              alt="DJ Oakley Scaffolding and Access Ltd"
+              className="h-14 w-auto object-contain transition-opacity group-hover:opacity-80"
+            />
           </Link>
 
           {/* Desktop Nav */}

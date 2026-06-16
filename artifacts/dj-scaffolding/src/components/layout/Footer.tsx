@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { HardHat, MapPin, Phone, Mail, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, ChevronRight } from "lucide-react";
 
 export function Footer() {
   return (
@@ -8,13 +8,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 group mb-6 inline-flex">
-              <div className="bg-primary p-1.5 rounded-sm">
-                <HardHat className="w-5 h-5 text-secondary" strokeWidth={2.5} />
-              </div>
-              <span className="text-lg font-bold tracking-tight text-white uppercase">
-                DJ SCAFFOLDING
-              </span>
+            <Link href="/" className="inline-flex mb-6 group">
+              <img
+                src="/logo.png"
+                alt="DJ Oakley Scaffolding and Access Ltd"
+                className="h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+              />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs text-gray-400">
               Your Local Scaffolding Specialists. Safe access and solid foundations for domestic, commercial, and industrial projects across Great Yarmouth and Norfolk.
