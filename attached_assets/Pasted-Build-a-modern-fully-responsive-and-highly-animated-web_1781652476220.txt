@@ -1,0 +1,80 @@
+Build a modern, fully responsive and highly animated website based on the existing website:
+
+https://www.djscaffolding-greatyarmouth.co.uk/
+
+🎯 Goal
+
+Redesign the entire website with a modern UI/UX while keeping all existing content, text, services, and structure, but improving design, performance, and user experience significantly.
+
+🧠 Core Requirements
+1. Content Extraction
+Extract ALL existing content from the current website:
+Text (headings, paragraphs)
+Services
+Contact information
+Images
+Navigation structure
+Do NOT remove any content, only redesign how it is displayed.
+2. Branding & Design System
+Automatically detect or extract:
+Primary color
+Secondary color
+Accent colors
+Extract or recreate the company logo (or improve it if needed)
+Build a consistent design system based on these colors
+3. UI/UX Redesign
+Create a completely modern layout with:
+Hero section with strong visual impact
+Smooth scroll animations
+Parallax effects
+Hover animations on buttons/cards
+Section reveal animations on scroll
+Micro-interactions (buttons, icons, menus)
+Use modern design style (like Apple / Tesla / premium construction company websites)
+4. Pages Structure
+Home page (fully redesigned)
+Services page
+About page
+Contact page
+Optional: Projects / Gallery page
+5. Admin Panel (IMPORTANT)
+
+Build a secure admin dashboard where the site owner can:
+
+Edit ALL text content dynamically
+Upload/change images
+Edit services
+Edit buttons and CTAs
+Update contact details
+Manage homepage sections
+Manage SEO metadata
+6. Tech Stack (choose modern stack)
+Frontend: Next.js or React (preferred)
+Styling: Tailwind CSS
+Animations: Framer Motion
+Backend: Node.js / Express or Next.js API routes
+Database: Supabase or Firebase
+Auth: Secure admin login system
+7. Performance & SEO
+Fully responsive (mobile-first)
+Fast loading optimized images
+SEO optimized (meta tags, structured data)
+Clean semantic HTML
+Lighthouse score 90+
+8. Extra Features
+Contact form with validation
+Google Maps integration
+WhatsApp quick contact button
+Sticky navigation bar
+Dark mode optional
+Live preview editing in admin panel (optional advanced feature)
+🎨 Animation Style
+Smooth fade-ins on scroll
+Slide-in sections
+Hover glow effects on buttons
+Animated counters (for stats)
+Subtle background motion effects
+⚠️ Important
+Do NOT lose any original business content
+Only enhance design and functionality
+Maintain business identity but modernize everything

@@ -1,19 +1,22 @@
-# [Project name]
+# DJ Scaffolding
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A modern, fully animated website and admin CMS for DJ Scaffolding — a scaffolding contractor based in Great Yarmouth, Norfolk.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/api-server run dev` — run the API server (port 8080)
+- `pnpm --filter @workspace/dj-scaffolding run dev` — run the frontend (port 19030)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
+- Optional env: `ADMIN_PASSWORD` — overrides default admin password (default: `djscaffolding2024`)
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
+- Frontend: React + Vite + Tailwind CSS + Framer Motion
 - API: Express 5
 - DB: PostgreSQL + Drizzle ORM
 - Validation: Zod (`zod/v4`), `drizzle-zod`
@@ -22,15 +25,25 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `lib/api-spec/openapi.yaml` — OpenAPI contract (source of truth)
+- `lib/db/src/schema/` — Drizzle DB schema (contact.ts, content.ts, services.ts)
+- `artifacts/api-server/src/routes/` — Express route handlers
+- `artifacts/dj-scaffolding/src/` — React frontend (pages/, components/)
+- `lib/api-client-react/src/generated/` — generated React Query hooks
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Admin auth uses simple in-memory session store + HTTP-only cookie. Password set via `ADMIN_PASSWORD` env var (default for dev: `djscaffolding2024`). Not suitable for multi-instance deploy without switching to DB-backed sessions.
+- Content sections are keyed strings in the DB (`hero`, `about`, `about_teaser`, `why_us`, `cta`) — the admin can edit these live.
+- Services are fully DB-driven and CRUD-manageable from the admin panel.
+- Contact form submissions are stored in the DB and viewable from the admin dashboard.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Public site: Home, Services, About, Contact pages with full animations and scroll reveals
+- Admin panel at `/admin` — password-protected CMS to edit text, services, and view contact messages
+- WhatsApp quick contact button (wa.me/447939352899)
+- Animated counters, parallax hero, staggered card animations
 
 ## User preferences
 
@@ -38,7 +51,9 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- After each OpenAPI spec change, re-run codegen before using the updated types
+- The `about_teaser` content section key must exist in the DB (seeded on first run)
+- Admin session is in-memory — restarts clear all sessions (users must log in again)
 
 ## Pointers
 

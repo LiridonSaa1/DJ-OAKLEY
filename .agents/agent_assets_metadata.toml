@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "owpDZTSm8ZLDkyF4BYw33"
+uri = "file://artifacts/dj-scaffolding/public/hero-bg.png"
+type = "image"
+title = "Dramatic scaffolding against Norfolk sky"

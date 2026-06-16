@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "DJ Scaffolding"
+version = "1.0.0"
+id = "artifacts/dj-scaffolding"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19030
+
+[services.development]
+run = "pnpm --filter @workspace/dj-scaffolding run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dj-scaffolding", "run", "build" ]
+publicDir = "artifacts/dj-scaffolding/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19030"
+BASE_PATH = "/"
