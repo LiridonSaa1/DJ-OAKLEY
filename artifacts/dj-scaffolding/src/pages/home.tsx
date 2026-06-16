@@ -3,168 +3,358 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, ShieldCheck, HardHat, Ruler, PhoneCall, Clock } from "lucide-react";
-import { useListServices, useGetContentSection } from "@workspace/api-client-react";
+import { ArrowRight, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
+import { useListServices } from "@workspace/api-client-react";
+import { motion, useAnimationFrame } from "framer-motion";
+import { useRef, useState } from "react";
+
+const TICKER_ITEMS = [
+  "Scaffolding hire and sales",
+  "Erection and dismantling services",
+  "Temporary roofs",
+  "Design works",
+  "Heritage",
+  "Advanced bookings",
+  "CITB / CISRS trained workforce",
+  "All of East Anglia covered",
+];
+
+function Ticker() {
+  const [x, setX] = useState(0);
+  const speed = 0.6;
+  useAnimationFrame(() => {
+    setX((prev) => {
+      const next = prev - speed;
+      return next < -900 ? 0 : next;
+    });
+  });
+
+  const repeated = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
+
+  return (
+    <div className="bg-primary overflow-hidden py-2.5 relative">
+      <div
+        className="flex whitespace-nowrap gap-0"
+        style={{ transform: `translateX(${x}px)` }}
+      >
+        {repeated.map((item, i) => (
+          <span key={i} className="inline-flex items-center text-white text-sm font-semibold tracking-wide px-6">
+            {item}
+            <span className="mx-6 text-white/40">•</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const WHY_CHOOSE = [
+  {
+    title: "Fully Insured",
+    desc: "We are fully insured for your complete peace of mind on every job.",
+  },
+  {
+    title: "CITB / CISRS Trained",
+    desc: "Ensuring the highest levels of skill, safety, and professionalism on every project.",
+  },
+  {
+    title: "Over 30 Years' Experience",
+    desc: "With 30 years in the scaffolding industry, we bring a wealth of knowledge to every job.",
+  },
+  {
+    title: "Competitive Prices",
+    desc: "We pride ourselves on offering competitive prices without compromising on quality.",
+  },
+  {
+    title: "Free Quotes",
+    desc: "No-obligation quotes for all our scaffolding services — call us today.",
+  },
+  {
+    title: "Beat Any Genuine Quote",
+    desc: "We provide competitive quotes, ensuring you receive the best value for top-quality scaffolding.",
+  },
+  {
+    title: "All East Anglia Covered",
+    desc: "We offer reliable scaffolding services and can travel to your location across East Anglia and further.",
+  },
+  {
+    title: "Family Run Business",
+    desc: "A proud family-run business focused on personalised service and exceeding expectations.",
+  },
+];
+
+const PROJECT_IMAGES = [
+  { src: "/images/projects.png", label: "Residential Block — Great Yarmouth" },
+];
+
+const SERVICES_LIST = [
+  "Scaffolding hire and sales",
+  "Erection and dismantling services",
+  "Temporary roofs",
+  "Design works",
+  "Heritage scaffolding",
+  "Advanced bookings",
+];
 
 export default function Home() {
   const { data: services } = useListServices();
-  const { data: heroSection } = useGetContentSection("hero");
-  const { data: aboutTeaser } = useGetContentSection("about_teaser");
 
-  const displayServices = services?.slice(0, 4) || [
+  const displayServices = services?.slice(0, 6) || [
     { id: 1, name: "Domestic Scaffolding", description: "Reliable scaffolding for home repairs, extensions, and renovations." },
     { id: 2, name: "Commercial Scaffolding", description: "Safe, efficient access solutions for commercial builds." },
     { id: 3, name: "Industrial Scaffolding", description: "Heavy-duty scaffolding for industrial plants." },
-    { id: 4, name: "Emergency Scaffolding", description: "Fast-response emergency scaffolding 24/7." }
+    { id: 4, name: "Roofing Scaffolding", description: "Specialist systems for roofing contractors." },
+    { id: 5, name: "Heritage Scaffolding", description: "Sensitive solutions for listed and historic buildings." },
+    { id: 6, name: "Emergency Scaffolding", description: "Fast-response emergency scaffolding 24/7." },
   ];
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+      {/* ── HERO ── */}
+      <section className="relative min-h-screen flex items-center pt-28 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-secondary/80 mix-blend-multiply z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/80 to-transparent z-10" />
-          <img 
-            src="/hero-bg.png" 
-            alt="Scaffolding structure against Norfolk sky" 
-            className="w-full h-full object-cover object-center"
+          <div className="absolute inset-0 bg-secondary/70 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent z-10" />
+          <img
+            src="/hero-bg.png"
+            alt="D J Oakley Scaffolding — scaffolding structure"
+            className="w-full h-full object-cover object-center scale-105"
           />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-          <div className="max-w-3xl">
-            <ScrollReveal delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 backdrop-blur-sm rounded-full mb-6">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-xs font-bold uppercase tracking-wider text-primary">Your Local Scaffolding Specialists</span>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.2}>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-                {heroSection?.title || "Built on Trust. Erected with Precision."}
-              </h1>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.3}>
-              <p className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
-                {heroSection?.content || "Serving Great Yarmouth and Norfolk with premium, safe, and reliable scaffolding solutions for domestic, commercial, and industrial projects."}
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={0.4}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/contact">
-                  <Button className="bg-primary text-secondary hover:bg-primary/90 h-14 px-8 text-base font-bold uppercase tracking-wide group">
-                    Get a Free Quote
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-                <Link href="/services">
-                  <Button variant="outline" className="h-14 px-8 text-base font-bold uppercase tracking-wide border-white/20 text-white hover:bg-white/10">
-                    Explore Services
-                  </Button>
-                </Link>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+        {/* Red accent line */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary z-20" />
 
-      {/* Services Overview */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <div className="max-w-2xl">
-              <ScrollReveal>
-                <h2 className="text-sm font-bold text-primary uppercase tracking-wider mb-3">What We Do</h2>
-                <h3 className="text-4xl font-bold text-secondary tracking-tight">Comprehensive Scaffolding Solutions</h3>
-              </ScrollReveal>
-            </div>
-            <ScrollReveal delay={0.2} direction="left">
-              <Link href="/services">
-                <Button variant="outline" className="font-bold uppercase tracking-wide border-secondary/20 hover:bg-secondary hover:text-white">
-                  View All Services
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 pb-24">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
+              <span className="inline-block text-primary text-sm font-bold uppercase tracking-widest mb-4 border-b-2 border-primary pb-1">
+                Great Yarmouth & East Anglia
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="text-6xl sm:text-7xl lg:text-8xl text-white mb-6 leading-none"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              SCAFFOLDING
+              <br />
+              <span className="text-primary">ERECTORS</span>
+            </motion.h1>
+
+            <motion.p
+              className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed font-light"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+            >
+              Choose D J Oakley Scaffolding Ltd in Great Yarmouth for all your industrial,
+              commercial, and residential scaffolding needs. Over 30 years of trusted expertise.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Link href="/contact">
+                <Button className="bg-primary text-white hover:bg-red-700 h-14 px-8 text-base font-bold uppercase tracking-wide group rounded-none">
+                  Get a Free Quote
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-            </ScrollReveal>
-          </div>
+              <Link href="/services">
+                <Button variant="outline" className="h-14 px-8 text-base font-bold uppercase tracking-wide border-white/30 text-white hover:bg-white/10 rounded-none">
+                  Our Services
+                </Button>
+              </Link>
+              <Link href="/about#projects">
+                <Button variant="outline" className="h-14 px-8 text-base font-bold uppercase tracking-wide border-white/30 text-white hover:bg-white/10 rounded-none">
+                  Our Portfolio
+                </Button>
+              </Link>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayServices.map((service, i) => (
-              <ScrollReveal key={service.id} delay={0.1 * i} className="h-full">
-                <div className="group relative bg-white border border-gray-100 p-8 h-full transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
-                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 group-hover:text-primary transition-all">
-                    <span className="text-5xl font-black">{String(i + 1).padStart(2, '0')}</span>
-                  </div>
-                  <div className="w-12 h-12 bg-secondary text-white flex items-center justify-center rounded-sm mb-6 group-hover:bg-primary group-hover:text-secondary transition-colors">
-                    <Ruler className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-xl font-bold text-secondary mb-3">{service.name}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">{service.description}</p>
+            {/* Quick contact strip */}
+            <motion.div
+              className="flex flex-wrap gap-6 mt-14 pt-8 border-t border-white/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              {[
+                { icon: Phone, label: "01493 802500" },
+                { icon: Phone, label: "07860 738293" },
+                { icon: Mail, label: "info@djscaffolding-greatyarmouth.co.uk" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 text-gray-300 text-sm">
+                  <Icon className="w-4 h-4 text-primary" />
+                  <span>{label}</span>
                 </div>
-              </ScrollReveal>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats / Why Choose Us */}
-      <section className="py-24 bg-secondary text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* ── TICKER ── */}
+      <Ticker />
+
+      {/* ── WHO ARE WE ── */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollReveal>
-                <h2 className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Why Choose Us</h2>
-                <h3 className="text-4xl font-bold tracking-tight mb-6">Built on Safety.<br/>Driven by Excellence.</h3>
-                <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                  {aboutTeaser?.content || "With over 15 years of experience serving Great Yarmouth and surrounding areas, DJ Scaffolding has built a reputation for reliability, precision, and unwavering commitment to safety."}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-0.5 bg-primary" />
+                  <span className="text-primary text-sm font-bold uppercase tracking-widest">About Us</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl text-secondary mb-8">
+                  WHO ARE D J OAKLEY
+                  <br />
+                  SCAFFOLDING LTD?
+                </h2>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.15}>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  At D J Oakley Scaffolding Ltd, based in Great Yarmouth, we bring over 30 years
+                  of experience in scaffolding hire and sales. Our dedicated team of skilled
+                  professionals is not only reliable and approachable but also highly knowledgeable,
+                  ensuring we deliver services that are precisely tailored to meet the unique
+                  requirements of each client.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-10">
+                  As a proud family-run business, we place great emphasis on offering a personalised
+                  and professional service, striving to exceed expectations with every project.
+                  Whether you need scaffolding for industrial, commercial, or residential purposes,
+                  our expertise allows us to provide solutions that are both efficient and safe.
+                  We are committed to maintaining the highest standards of quality and customer
+                  satisfaction, making us a trusted choice in the industry.
                 </p>
               </ScrollReveal>
 
-              <div className="space-y-4 mb-10">
-                {[
-                  "Fully insured and certified professionals",
-                  "Strict adherence to TG20:21 compliance",
-                  "Competitive pricing without compromising quality",
-                  "Prompt, reliable service delivery"
-                ].map((item, i) => (
-                  <ScrollReveal key={i} delay={0.1 * i} direction="right">
-                    <div className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                      <span className="text-gray-200">{item}</span>
+              <ScrollReveal delay={0.25}>
+                <Link href="/about">
+                  <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-8 font-bold uppercase tracking-wide">
+                    Learn More About Us
+                  </Button>
+                </Link>
+              </ScrollReveal>
+            </div>
+
+            <ScrollReveal delay={0.2} direction="left">
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary z-0" />
+                <img
+                  src="/images/about-light.png"
+                  alt="D J Oakley Scaffolding project"
+                  className="relative z-10 w-full h-[460px] object-cover shadow-2xl"
+                />
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-secondary z-0" />
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ── OUR SCAFFOLDING SERVICES ── */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <ScrollReveal direction="right">
+              <div className="relative">
+                <img
+                  src="/images/services.png"
+                  alt="DJ Oakley Scaffolding sign"
+                  className="w-full h-[440px] object-cover shadow-xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent" />
+              </div>
+            </ScrollReveal>
+
+            <div>
+              <ScrollReveal>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-0.5 bg-primary" />
+                  <span className="text-primary text-sm font-bold uppercase tracking-widest">What We Offer</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl text-secondary mb-8">
+                  OUR SCAFFOLDING
+                  <br />
+                  SERVICES
+                </h2>
+              </ScrollReveal>
+
+              <div className="space-y-3 mb-10">
+                {SERVICES_LIST.map((item, i) => (
+                  <ScrollReveal key={i} delay={0.08 * i}>
+                    <div className="flex items-center gap-4 py-3 border-b border-gray-200 group">
+                      <div className="w-8 h-8 bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+                        <CheckCircle2 className="w-4 h-4 text-primary group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-gray-700 font-medium group-hover:text-secondary transition-colors">{item}</span>
                     </div>
                   </ScrollReveal>
                 ))}
               </div>
 
-              <ScrollReveal delay={0.4}>
-                <Link href="/about">
-                  <Button className="bg-primary text-secondary hover:bg-primary/90 font-bold uppercase tracking-wide px-8">
-                    Read Our Story
+              <ScrollReveal delay={0.5}>
+                <Link href="/contact">
+                  <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-8 font-bold uppercase tracking-wide">
+                    Reach Out To Us Today
                   </Button>
                 </Link>
               </ScrollReveal>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { value: 15, suffix: "+", label: "Years Experience", icon: Clock },
-                { value: 500, suffix: "+", label: "Projects Completed", icon: HardHat },
-                { value: 100, suffix: "%", label: "Safety Record", icon: ShieldCheck },
-                { value: 24, suffix: "/7", label: "Emergency Service", icon: PhoneCall }
-              ].map((stat, i) => (
-                <ScrollReveal key={i} delay={0.1 * i}>
-                  <div className="bg-white/5 border border-white/10 p-6 md:p-8 flex flex-col items-center text-center hover:bg-white/10 transition-colors">
-                    <stat.icon className="w-8 h-8 text-primary mb-4" />
-                    <div className="text-4xl font-black text-white mb-2 font-mono">
-                      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+      {/* ── WHY CHOOSE US ── */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            {/* Left text column */}
+            <div className="lg:col-span-1">
+              <ScrollReveal>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-0.5 bg-primary" />
+                  <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Strengths</span>
+                </div>
+                <h2 className="text-4xl text-secondary mb-6">WHY CHOOSE US?</h2>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  At DJ Oakley Scaffolding Ltd, we are committed to delivering only the highest
+                  standards in our scaffolding services. With a spotless health and safety record
+                  and a team of fully trained professionals, we provide a reliable and exceptional
+                  service you can trust, giving you complete peace of mind.
+                </p>
+              </ScrollReveal>
+            </div>
+
+            {/* Cards grid */}
+            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              {WHY_CHOOSE.map((item, i) => (
+                <ScrollReveal key={i} delay={0.06 * i}>
+                  <motion.div
+                    whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-gray-50 border border-gray-100 p-6 h-full cursor-default"
+                  >
+                    <div className="w-10 h-10 bg-primary/10 flex items-center justify-center mb-4">
+                      <div className="w-4 h-4 bg-primary rounded-full" />
                     </div>
-                    <div className="text-sm font-bold text-gray-400 uppercase tracking-wider">{stat.label}</div>
-                  </div>
+                    <h3 className="text-secondary font-bold mb-2 text-base">{item.title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                  </motion.div>
                 </ScrollReveal>
               ))}
             </div>
@@ -172,22 +362,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Strip */}
-      <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* ── STATS BANNER ── */}
+      <section className="bg-secondary py-16 relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-primary" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {[
+              { value: 30, suffix: "+", label: "Years Experience" },
+              { value: 500, suffix: "+", label: "Projects Completed" },
+              { value: 100, suffix: "%", label: "Safety Record" },
+              { value: 24, suffix: "/7", label: "Emergency Service" },
+            ].map((stat, i) => (
+              <ScrollReveal key={i} delay={0.1 * i}>
+                <div className="text-white">
+                  <div className="text-5xl sm:text-6xl text-primary mb-2">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-sm font-bold uppercase tracking-widest text-gray-400">{stat.label}</div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary" />
+      </section>
+
+      {/* ── RECENT PROJECTS ── */}
+      <section className="py-24 bg-secondary">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-black text-secondary uppercase tracking-tight mb-6">
-              Ready to start your next project?
-            </h2>
-            <p className="text-secondary/80 text-lg mb-8 max-w-2xl mx-auto font-medium">
-              Get in touch today for a free, no-obligation site survey and competitive quote.
-            </p>
-            <Link href="/contact">
-              <Button className="bg-secondary text-white hover:bg-secondary/90 h-14 px-10 text-lg font-bold uppercase tracking-wide">
-                Contact Us Now
-              </Button>
-            </Link>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-0.5 bg-primary" />
+              <span className="text-primary text-sm font-bold uppercase tracking-widest">Portfolio</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl text-white mb-12">OUR RECENT PROJECTS</h2>
           </ScrollReveal>
+
+          <ScrollReveal delay={0.1}>
+            <div className="overflow-hidden rounded-none">
+              <img
+                src="/images/projects.png"
+                alt="DJ Oakley Scaffolding recent projects"
+                className="w-full object-cover"
+                style={{ maxHeight: 520 }}
+              />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className="mt-10 text-center">
+              <Link href="/services">
+                <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-10 font-bold uppercase tracking-wide">
+                  View All Our Work
+                </Button>
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── CTA CONTACT STRIP ── */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl text-secondary text-center mb-4">
+              DO YOU NEED THE SERVICES OF
+              <br />
+              <span className="text-primary">EXPERIENCED SCAFFOLDING ERECTORS?</span>
+            </h2>
+            <div className="w-24 h-1 bg-primary mx-auto mb-12" />
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Contact Info */}
+            <ScrollReveal delay={0.1}>
+              <h3 className="text-secondary font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-primary">
+                Contact Us
+              </h3>
+              <div className="space-y-4 text-gray-600">
+                <div>
+                  <p className="font-bold text-secondary text-sm mb-1">Tel:</p>
+                  <p><a href="tel:01493802500" className="hover:text-primary transition-colors">01493 802500</a></p>
+                  <p><a href="tel:07875344499" className="hover:text-primary transition-colors">07875 344499</a></p>
+                  <p><a href="tel:07860738293" className="hover:text-primary transition-colors">07860 738293</a></p>
+                </div>
+                <div>
+                  <p className="font-bold text-secondary text-sm mb-1">Email:</p>
+                  <a href="mailto:info@djscaffolding-greatyarmouth.co.uk" className="hover:text-primary transition-colors text-sm break-all">
+                    info@djscaffolding-greatyarmouth.co.uk
+                  </a>
+                </div>
+                <div>
+                  <p className="font-bold text-secondary text-sm mb-1">Address:</p>
+                  <p className="text-sm">Unit B Fenner Rd Monument Estate<br />Great Yarmouth<br />Norfolk</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Map */}
+            <ScrollReveal delay={0.2}>
+              <h3 className="text-secondary font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-primary">
+                Find Us
+              </h3>
+              <div className="w-full h-56 bg-gray-100 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+                <iframe
+                  title="DJ Oakley Scaffolding location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2397.6!2d1.7228!3d52.5914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9e3b5b5e5e5e5%3A0x1!2sDJ+Oakley+Scaffolding+%26+Access!5e0!3m2!1sen!2suk!4v1234567890"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                />
+              </div>
+              <div className="mt-3 flex items-center gap-2 text-gray-500 text-sm">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span>Unit B Fenner Rd, Great Yarmouth, Norfolk</span>
+              </div>
+            </ScrollReveal>
+
+            {/* Quick contact form */}
+            <ScrollReveal delay={0.3}>
+              <h3 className="text-secondary font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-primary">
+                Get In Touch
+              </h3>
+              <div className="space-y-3">
+                {["Name", "Email Address", "Phone", "Message"].map((placeholder) => (
+                  placeholder === "Message" ? (
+                    <textarea
+                      key={placeholder}
+                      placeholder={placeholder}
+                      rows={3}
+                      className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+                    />
+                  ) : (
+                    <input
+                      key={placeholder}
+                      type="text"
+                      placeholder={placeholder}
+                      className="w-full border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                    />
+                  )
+                ))}
+                <Link href="/contact">
+                  <Button className="w-full bg-primary text-white hover:bg-red-700 rounded-none h-11 font-bold uppercase tracking-wide mt-1">
+                    Send Message
+                  </Button>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </Layout>
