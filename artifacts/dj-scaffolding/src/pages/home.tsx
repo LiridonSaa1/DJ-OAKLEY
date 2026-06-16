@@ -1,12 +1,11 @@
 import { Layout } from "@/components/layout/Layout";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
-import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
 import { useListServices } from "@workspace/api-client-react";
 import { motion, useAnimationFrame } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const TICKER_ITEMS = [
   "Scaffolding hire and sales",
@@ -165,20 +164,20 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Link href="/contact">
-                <Button className="bg-primary text-white hover:bg-red-700 h-14 px-8 text-base font-bold uppercase tracking-wide group rounded-none">
-                  Get a Free Quote
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <button className="btn-primary">
+                  <span>Get a Free Quote</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </Link>
               <Link href="/services">
-                <Button variant="outline" className="h-14 px-8 text-base font-bold uppercase tracking-wide border-white/30 text-white hover:bg-white/10 rounded-none">
-                  Our Services
-                </Button>
+                <button className="btn-ghost">
+                  <span>Our Services</span>
+                </button>
               </Link>
               <Link href="/about#projects">
-                <Button variant="outline" className="h-14 px-8 text-base font-bold uppercase tracking-wide border-white/30 text-white hover:bg-white/10 rounded-none">
-                  Our Portfolio
-                </Button>
+                <button className="btn-ghost">
+                  <span>Our Portfolio</span>
+                </button>
               </Link>
             </motion.div>
 
@@ -244,9 +243,9 @@ export default function Home() {
 
               <ScrollReveal delay={0.25}>
                 <Link href="/about">
-                  <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-8 font-bold uppercase tracking-wide">
-                    Learn More About Us
-                  </Button>
+                  <button className="btn-dark">
+                    <span>Learn More About Us</span>
+                  </button>
                 </Link>
               </ScrollReveal>
             </div>
@@ -309,9 +308,9 @@ export default function Home() {
 
               <ScrollReveal delay={0.5}>
                 <Link href="/contact">
-                  <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-8 font-bold uppercase tracking-wide">
-                    Reach Out To Us Today
-                  </Button>
+                  <button className="btn-primary">
+                    <span>Reach Out To Us Today</span>
+                  </button>
                 </Link>
               </ScrollReveal>
             </div>
@@ -412,9 +411,10 @@ export default function Home() {
           <ScrollReveal delay={0.2}>
             <div className="mt-10 text-center">
               <Link href="/services">
-                <Button className="bg-primary text-white hover:bg-red-700 rounded-none h-12 px-10 font-bold uppercase tracking-wide">
-                  View All Our Work
-                </Button>
+                <button className="btn-ghost">
+                  <span>View All Our Work</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </Link>
             </div>
           </ScrollReveal>
@@ -502,9 +502,9 @@ export default function Home() {
                   )
                 ))}
                 <Link href="/contact">
-                  <Button className="w-full bg-primary text-white hover:bg-red-700 rounded-none h-11 font-bold uppercase tracking-wide mt-1">
-                    Send Message
-                  </Button>
+                  <button className="btn-primary w-full mt-1">
+                    <span>Send Message</span>
+                  </button>
                 </Link>
               </div>
             </ScrollReveal>
