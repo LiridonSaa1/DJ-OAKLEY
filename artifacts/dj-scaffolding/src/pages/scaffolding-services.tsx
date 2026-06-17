@@ -284,33 +284,94 @@ export default function ScaffoldingServices() {
         </div>
       </section>
 
-      {/* ── CTA STRIP ── */}
+      {/* ── CTA CONTACT STRIP ── */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tight text-center mb-4">
               DO YOU NEED THE SERVICES OF<br /><span className="text-primary">EXPERIENCED SCAFFOLDING ERECTORS?</span>
             </h2>
-            <div className="w-24 h-1 bg-primary mx-auto mb-8" />
-            <p className="text-gray-600 text-lg mb-10 max-w-2xl mx-auto font-medium">
-              Get in touch today for a free, no-obligation quote. We cover Great Yarmouth and all of East Anglia.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/contact">
-                <button className="h-14 px-10 text-base font-black uppercase tracking-wide bg-primary text-white hover:bg-primary/90 transition-colors flex items-center gap-2">
-                  <span>Get a Free Quote</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </Link>
-              <a
-                href="tel:01493802500"
-                className="h-14 px-10 text-base font-black uppercase tracking-wide border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors flex items-center gap-2"
-              >
-                <Phone className="w-4 h-4" />
-                <span>01493 802500</span>
-              </a>
-            </div>
+            <div className="w-24 h-1 bg-primary mx-auto mb-12" />
           </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Contact Us */}
+            <ScrollReveal delay={0.1}>
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
+                CONTACT US
+              </h3>
+              <div className="space-y-4 text-gray-600 text-sm">
+                <div>
+                  <p className="text-secondary font-bold mb-1">Tel:</p>
+                  <a href="tel:01493802500" className="block hover:text-primary transition-colors">01493 802500</a>
+                  <a href="tel:07875344499" className="block hover:text-primary transition-colors">07875 344499</a>
+                  <a href="tel:07860738293" className="block hover:text-primary transition-colors">07860 738293</a>
+                </div>
+                <div>
+                  <p className="text-secondary font-bold mb-1">Email:</p>
+                  <a href="mailto:info@djscaffolding-greatyarmouth.co.uk" className="hover:text-primary transition-colors break-all">
+                    info@djscaffolding-greatyarmouth.co.uk
+                  </a>
+                </div>
+                <div>
+                  <p className="text-secondary font-bold mb-1">Address:</p>
+                  <p>Unit B Fenner Rd Monument Estate</p>
+                  <p>Great Yarmouth</p>
+                  <p>Norfolk</p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Find Us */}
+            <ScrollReveal delay={0.2}>
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
+                FIND US
+              </h3>
+              <div className="w-full overflow-hidden border border-gray-200" style={{ height: 200 }}>
+                <iframe
+                  title="DJ Oakley Scaffolding location"
+                  src="https://maps.google.com/maps?q=Unit+B+Fenner+Road,+Great+Yarmouth,+Norfolk+NR30+3AE&z=15&output=embed"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="mt-3 flex items-center gap-2 text-gray-500 text-xs">
+                <MapPin className="w-3 h-3 text-primary flex-shrink-0" />
+                <span>Unit B Fenner Rd, Great Yarmouth, Norfolk</span>
+              </div>
+            </ScrollReveal>
+
+            {/* Get In Touch */}
+            <ScrollReveal delay={0.3}>
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
+                GET IN TOUCH
+              </h3>
+              <div className="space-y-2">
+                {["Name", "Email Address", "Phone"].map(placeholder => (
+                  <input
+                    key={placeholder}
+                    type="text"
+                    placeholder={placeholder}
+                    className="w-full border border-gray-200 text-secondary placeholder-gray-400 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
+                  />
+                ))}
+                <textarea
+                  placeholder="Message"
+                  rows={3}
+                  className="w-full border border-gray-200 text-secondary placeholder-gray-400 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+                />
+                <Link href="/contact">
+                  <button
+                    className="w-full py-3 font-black uppercase tracking-widest text-sm text-white transition-opacity hover:opacity-90"
+                    style={{ background: "#e50023" }}
+                  >
+                    SEND MESSAGE
+                  </button>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </Layout>

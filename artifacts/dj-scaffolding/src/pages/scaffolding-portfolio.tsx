@@ -309,10 +309,10 @@ export default function ScaffoldingPortfolio() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-secondary uppercase tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tight text-center mb-4">
               DO YOU NEED THE SERVICES OF<br /><span className="text-primary">EXPERIENCED SCAFFOLDING ERECTORS?</span>
             </h2>
-            <div className="w-16 h-1 bg-primary mb-12" />
+            <div className="w-24 h-1 bg-primary mx-auto mb-12" />
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
