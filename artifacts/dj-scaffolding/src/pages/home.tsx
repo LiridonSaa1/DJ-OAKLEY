@@ -600,34 +600,70 @@ export default function Home() {
       <section className="py-24 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-0.5 bg-primary" />
-              <span className="text-primary text-sm font-bold uppercase tracking-widest">Portfolio</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl text-white mb-12">OUR RECENT PROJECTS</h2>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <div className="overflow-hidden rounded-none">
-              <img
-                src="/images/projects.png"
-                alt="DJ Oakley Scaffolding recent projects"
-                className="w-full object-cover"
-                style={{ maxHeight: 520 }}
-              />
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <div className="mt-10 text-center">
+            <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-0.5 bg-primary" />
+                  <span className="text-primary text-sm font-bold uppercase tracking-widest">Portfolio</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl text-white">OUR RECENT PROJECTS</h2>
+              </div>
               <Link href="/services">
-                <button className="btn-ghost">
+                <button className="btn-ghost flex-shrink-0">
                   <span>View All Our Work</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
             </div>
           </ScrollReveal>
+
+          {/* Photo grid — 4 cols desktop, 3 tablet, 2 mobile */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            {[
+              { src: "/images/projects/proj-1.jpg",  label: "Domestic Roofing — Norfolk" },
+              { src: "/images/projects/proj-2.jpg",  label: "Marine / Boat Refit" },
+              { src: "/images/projects/proj-3.jpg",  label: "Roller Coaster — Great Yarmouth" },
+              { src: "/images/projects/proj-4.jpg",  label: "Commercial High Street" },
+              { src: "/images/projects/proj-5.jpg",  label: "Heritage Building" },
+              { src: "/images/projects/proj-6.jpg",  label: "Industrial Warehouse" },
+              { src: "/images/projects/proj-7.jpg",  label: "Industrial Unit" },
+              { src: "/images/projects/proj-8.jpg",  label: "Covered Walkway" },
+              { src: "/images/projects/proj-9.jpg",  label: "New Build — Block Work" },
+              { src: "/images/projects/proj-10.jpg", label: "Residential Block" },
+              { src: "/images/projects/proj-11.jpg", label: "Residential Block — Phase 2" },
+              { src: "/images/projects/proj-12.jpg", label: "Roof Access — Rural" },
+            ].map((project, i) => (
+              <motion.div
+                key={i}
+                className="relative overflow-hidden group"
+                style={{ aspectRatio: "1 / 1" }}
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.45, delay: (i % 4) * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img
+                  src={project.src}
+                  alt={project.label}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Hover overlay */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+                  style={{ background: "linear-gradient(to top, rgba(229,0,35,0.85) 0%, rgba(10,10,10,0.2) 60%, transparent 100%)" }}
+                >
+                  <p className="text-white text-xs font-bold uppercase tracking-widest p-4 leading-tight">
+                    {project.label}
+                  </p>
+                </div>
+                {/* Corner accent */}
+                <div
+                  className="absolute top-0 left-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "#e50023" }}
+                />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
