@@ -30,24 +30,6 @@ const SERVICES = [
     desc: "Our residential scaffolding services are designed to provide safe and reliable support for home improvement projects, from minor repairs to large renovations.",
     points: ["Roof repairs & extensions", "Chimney & fascia work", "New build access"],
   },
-  {
-    icon: ShieldCheck,
-    title: "Heritage Scaffolding",
-    desc: "Specialist scaffolding for listed buildings and historic structures, designed to protect the fabric of the building while providing safe working platforms.",
-    points: ["Listed building compliance", "Birdcage & fan systems", "Sensitive structure access"],
-  },
-  {
-    icon: Wrench,
-    title: "Temporary Roofs",
-    desc: "Full temporary roof systems to protect structures and workers from the elements during construction, repair, or when a permanent roof is being replaced.",
-    points: ["Weather protection systems", "Shrink-wrap solutions", "Long-term hire available"],
-  },
-  {
-    icon: ArrowRight,
-    title: "Design & Inspection",
-    desc: "Advanced CAD scaffold designs and CISRS-trained inspection service ensuring every structure meets the latest safety standards and client specifications.",
-    points: ["CAD scaffold drawings", "CISRS inspection reports", "Load-bearing calculations"],
-  },
 ];
 
 function HeroSlider() {
@@ -224,7 +206,7 @@ export default function ScaffoldingServices() {
       </section>
 
       {/* ── SERVICE CARDS ── */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <div className="text-center mb-16">
@@ -233,7 +215,7 @@ export default function ScaffoldingServices() {
                 <span className="text-primary text-sm font-bold uppercase tracking-widest">What We Offer</span>
                 <div className="w-10 h-0.5 bg-primary" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-black text-secondary uppercase tracking-tight">
                 Our Scaffolding Services
               </h2>
             </div>
