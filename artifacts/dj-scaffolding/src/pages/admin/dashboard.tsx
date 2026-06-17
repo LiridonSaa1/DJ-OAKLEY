@@ -9,7 +9,7 @@ import {
   useCreateService,
   useDeleteService,
   useUpdateContentSection
-} from "@workspace/api-client-react";
+} from "@/lib/api-client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { LogOut, HardHat, Plus, Trash2, Mail, LayoutTemplate, Box, Save } from "lucide-react";

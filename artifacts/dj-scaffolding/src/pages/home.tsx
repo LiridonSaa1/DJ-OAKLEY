@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Phone, Mail, MapPin, ShieldCheck, GraduationCap, Award, Tag, FileText, TrendingDown, Heart, ChevronLeft, ChevronRight } from "lucide-react";
-import { useListServices } from "@workspace/api-client-react";
+import { useListServices } from "@/lib/api-client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 

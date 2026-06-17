@@ -3,7 +3,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { useGetContentSection } from "@workspace/api-client-react";
+import { useGetContentSection } from "@/lib/api-client";
 
 export default function About() {
   const { data: aboutSection } = useGetContentSection("about_full");

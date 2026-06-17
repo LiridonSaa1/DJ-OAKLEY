@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { useListServices } from "@workspace/api-client-react";
+import { useListServices } from "@/lib/api-client";
 import { Ruler } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
