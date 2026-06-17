@@ -280,9 +280,9 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary z-0" />
                 <img
-                  src="/images/about-light.png"
-                  alt="D J Oakley Scaffolding project"
-                  className="relative z-10 w-full h-[460px] object-cover shadow-2xl"
+                  src="/images/dj-oakley-sign.jpg"
+                  alt="D J Oakley Scaffolding Ltd sign on site"
+                  className="relative z-10 w-full h-[460px] object-cover object-center shadow-2xl"
                 />
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-secondary z-0" />
               </div>
@@ -362,9 +362,9 @@ export default function Home() {
             <ScrollReveal direction="right">
               <div className="relative">
                 <img
-                  src="/images/services.png"
-                  alt="DJ Oakley Scaffolding sign"
-                  className="w-full h-[440px] object-cover shadow-xl"
+                  src="/images/roller-coaster-scaffold.jpg"
+                  alt="D J Oakley Scaffolding — Roller Coaster project, Great Yarmouth"
+                  className="w-full h-[440px] object-cover object-top shadow-xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent" />
               </div>
