@@ -45,7 +45,7 @@ export default function ScaffoldingPortfolio() {
       {/* ── HERO ── */}
       <section
         className="relative flex items-center justify-center overflow-hidden text-center"
-        style={{ minHeight: "60vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <img
           src="/images/hero-closeup.png"
