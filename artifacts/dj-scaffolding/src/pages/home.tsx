@@ -4,46 +4,63 @@ import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
 import { useListServices } from "@workspace/api-client-react";
-import { motion, useAnimationFrame } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
-const TICKER_ITEMS = [
-  "Scaffolding hire and sales",
-  "Erection and dismantling services",
-  "Temporary roofs",
-  "Design works",
-  "Heritage",
-  "Advanced bookings",
-  "CITB / CISRS trained workforce",
-  "All of East Anglia covered",
+const TYPEWRITER_WORDS = [
+  "ERECTORS",
+  "HIRE & SALES",
+  "EXPERTS",
+  "INSTALLERS",
 ];
 
-function Ticker() {
-  const [x, setX] = useState(0);
-  const speed = 0.6;
-  useAnimationFrame(() => {
-    setX((prev) => {
-      const next = prev - speed;
-      return next < -900 ? 0 : next;
-    });
-  });
+function Typewriter() {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const repeated = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
+  const word = TYPEWRITER_WORDS[wordIndex];
+  const displayed = word.slice(0, charIndex);
+
+  useEffect(() => {
+    if (isPaused) {
+      const t = setTimeout(() => { setIsPaused(false); setIsDeleting(true); }, 1800);
+      return () => clearTimeout(t);
+    }
+    const speed = isDeleting ? 55 : 110;
+    const t = setTimeout(() => {
+      if (!isDeleting) {
+        if (charIndex < word.length) {
+          setCharIndex(c => c + 1);
+        } else {
+          setIsPaused(true);
+        }
+      } else {
+        if (charIndex > 0) {
+          setCharIndex(c => c - 1);
+        } else {
+          setIsDeleting(false);
+          setWordIndex(w => (w + 1) % TYPEWRITER_WORDS.length);
+        }
+      }
+    }, speed);
+    return () => clearTimeout(t);
+  }, [charIndex, isDeleting, isPaused, word.length]);
 
   return (
-    <div className="bg-primary overflow-hidden py-2.5 relative">
-      <div
-        className="flex whitespace-nowrap gap-0"
-        style={{ transform: `translateX(${x}px)` }}
-      >
-        {repeated.map((item, i) => (
-          <span key={i} className="inline-flex items-center text-white text-sm font-semibold tracking-wide px-6">
-            {item}
-            <span className="mx-6 text-white/40">•</span>
-          </span>
-        ))}
-      </div>
-    </div>
+    <span className="text-primary">
+      {displayed}
+      <span
+        className="inline-block align-middle ml-1"
+        style={{
+          width: "3px",
+          height: "0.8em",
+          background: "#e50023",
+          animation: "blink 1s step-end infinite",
+        }}
+      />
+    </span>
   );
 }
 
@@ -144,7 +161,7 @@ export default function Home() {
             >
               SCAFFOLDING
               <br />
-              <span className="text-primary">ERECTORS</span>
+              <Typewriter />
             </motion.h1>
 
             <motion.p
@@ -202,9 +219,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ── TICKER ── */}
-      <Ticker />
 
       {/* ── WHO ARE WE ── */}
       <section className="py-24 bg-white">

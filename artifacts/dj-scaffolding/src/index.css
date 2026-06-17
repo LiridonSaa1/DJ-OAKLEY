@@ -196,6 +196,12 @@
   }
 }
 
+/* ── Typewriter cursor blink ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ── DJ Oakley Brand Buttons ── */
 @layer components {
   /* Primary: solid red, slides to black on hover with red glow */
