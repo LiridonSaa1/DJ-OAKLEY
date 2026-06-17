@@ -1,5 +1,23 @@
 import { Link } from "wouter";
-import { MapPin, Phone, Mail, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, ChevronRight, Facebook, Instagram, Twitter } from "lucide-react";
+
+const SOCIALS = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/djoakleyscaffolding",
+    icon: Facebook,
+  },
+  {
+    label: "X (Twitter)",
+    href: "https://x.com/djoakleyscaff",
+    icon: Twitter,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/djoakleyscaffoldingaccess/",
+    icon: Instagram,
+  },
+];
 
 export function Footer() {
   return (
@@ -18,6 +36,21 @@ export function Footer() {
             <p className="text-sm leading-relaxed max-w-xs text-gray-400">
               Your Local Scaffolding Specialists. Safe access and solid foundations for domestic, commercial, and industrial projects across Great Yarmouth and Norfolk.
             </p>
+            {/* Social icons */}
+            <div className="flex items-center gap-3 pt-2">
+              {SOCIALS.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center border border-white/15 text-gray-400 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -87,10 +120,26 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} DJ Scaffolding. All rights reserved.
+            &copy; {new Date().getFullYear()} DJ Oakley Scaffolding and Access Ltd. All rights reserved.
           </p>
-          <div className="flex gap-4 text-xs text-gray-500">
-            <Link href="/admin" className="hover:text-white transition-colors">Admin Login</Link>
+          <div className="flex items-center gap-5">
+            {/* Social icons repeat in bottom bar */}
+            <div className="flex gap-3">
+              {SOCIALS.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="text-gray-500 hover:text-primary transition-colors"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
+            <span className="text-gray-700 text-xs">|</span>
+            <Link href="/admin" className="text-xs text-gray-500 hover:text-white transition-colors">Admin Login</Link>
           </div>
         </div>
       </div>
