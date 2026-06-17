@@ -257,25 +257,25 @@ export default function ScaffoldingServices() {
       </section>
 
       {/* ── CTA STRIP ── */}
-      <section className="py-20 bg-primary">
+      <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-6">
               DO YOU NEED THE SERVICES OF<br />EXPERIENCED SCAFFOLDING ERECTORS?
             </h2>
-            <p className="text-secondary/80 text-lg mb-10 max-w-2xl mx-auto font-medium">
+            <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto font-medium">
               Get in touch today for a free, no-obligation quote. We cover Great Yarmouth and all of East Anglia.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/contact">
-                <button className="h-14 px-10 text-base font-black uppercase tracking-wide bg-secondary text-white hover:bg-secondary/90 transition-colors flex items-center gap-2">
+                <button className="h-14 px-10 text-base font-black uppercase tracking-wide bg-primary text-white hover:bg-primary/90 transition-colors flex items-center gap-2">
                   <span>Get a Free Quote</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </Link>
               <a
                 href="tel:01493802500"
-                className="h-14 px-10 text-base font-black uppercase tracking-wide border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors flex items-center gap-2"
+                className="h-14 px-10 text-base font-black uppercase tracking-wide border-2 border-white text-white hover:bg-white hover:text-secondary transition-colors flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
                 <span>01493 802500</span>
