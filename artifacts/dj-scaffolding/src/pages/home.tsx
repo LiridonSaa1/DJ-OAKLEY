@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, CheckCircle2, Phone, Mail, MapPin, ShieldCheck, GraduationCap, Award, Tag, FileText, TrendingDown, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useListServices } from "@workspace/api-client-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -75,34 +75,42 @@ function ServicesTicker() {
 
 const WHY_CHOOSE = [
   {
+    icon: ShieldCheck,
     title: "Fully Insured",
     desc: "We are fully insured for your complete peace of mind on every job.",
   },
   {
+    icon: GraduationCap,
     title: "CITB / CISRS Trained",
     desc: "Ensuring the highest levels of skill, safety, and professionalism on every project.",
   },
   {
+    icon: Award,
     title: "Over 30 Years' Experience",
     desc: "With 30 years in the scaffolding industry, we bring a wealth of knowledge to every job.",
   },
   {
+    icon: Tag,
     title: "Competitive Prices",
     desc: "We pride ourselves on offering competitive prices without compromising on quality.",
   },
   {
+    icon: FileText,
     title: "Free Quotes",
     desc: "No-obligation quotes for all our scaffolding services — call us today.",
   },
   {
+    icon: TrendingDown,
     title: "Beat Any Genuine Quote",
     desc: "We provide competitive quotes, ensuring you receive the best value for top-quality scaffolding.",
   },
   {
+    icon: MapPin,
     title: "All East Anglia Covered",
     desc: "We offer reliable scaffolding services and can travel to your location across East Anglia and further.",
   },
   {
+    icon: Heart,
     title: "Family Run Business",
     desc: "A proud family-run business focused on personalised service and exceeding expectations.",
   },
@@ -175,6 +183,133 @@ function HeroCarousel() {
         ))}
       </div>
     </div>
+  );
+}
+
+function WhyChooseSlider() {
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = WHY_CHOOSE.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setCurrent(i => (i + 1) % total), 4000);
+    return () => clearInterval(t);
+  }, [paused, total]);
+
+  const prev = () => setCurrent(i => (i - 1 + total) % total);
+  const next = () => setCurrent(i => (i + 1) % total);
+
+  const CARD_W = 300;
+  const GAP = 20;
+  const STEP = CARD_W + GAP;
+
+  return (
+    <section className="py-24 bg-white" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header row */}
+        <ScrollReveal>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-0.5 bg-primary" />
+                <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Strengths</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl text-secondary">WHY CHOOSE US?</h2>
+            </div>
+            {/* Arrow buttons */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={prev}
+                className="w-12 h-12 border-2 border-secondary flex items-center justify-center text-secondary hover:bg-secondary hover:text-white transition-all duration-300 group"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="text-sm text-gray-400 font-mono w-16 text-center select-none">
+                {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+              </span>
+              <button
+                onClick={next}
+                className="w-12 h-12 border-2 border-primary bg-primary flex items-center justify-center text-white hover:bg-secondary hover:border-secondary transition-all duration-300"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Slider viewport */}
+        <div className="overflow-hidden relative">
+          {/* Fade right edge */}
+          <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to left, white, transparent)" }} />
+
+          <motion.div
+            className="flex"
+            style={{ gap: GAP }}
+            animate={{ x: -current * STEP }}
+            transition={{ type: "spring", stiffness: 260, damping: 32 }}
+          >
+            {WHY_CHOOSE.map((item, i) => {
+              const Icon = item.icon;
+              const isActive = i === current;
+              return (
+                <motion.div
+                  key={i}
+                  animate={{
+                    opacity: i >= current && i < current + 3 ? 1 : 0.35,
+                    scale: isActive ? 1 : 0.97,
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className="flex-shrink-0 border p-7 cursor-default"
+                  style={{
+                    width: CARD_W,
+                    borderColor: isActive ? "#e50023" : "#e5e7eb",
+                    background: isActive ? "#0a0a0a" : "#f9fafb",
+                  }}
+                >
+                  <div
+                    className="w-12 h-12 flex items-center justify-center mb-5"
+                    style={{ background: isActive ? "rgba(229,0,35,0.15)" : "rgba(229,0,35,0.08)" }}
+                  >
+                    <Icon className="w-6 h-6" style={{ color: "#e50023" }} />
+                  </div>
+                  <h3
+                    className="font-bold mb-3 text-base uppercase tracking-wide"
+                    style={{ color: isActive ? "#ffffff" : "#0a0a0a" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: isActive ? "rgba(255,255,255,0.65)" : "#6b7280" }}>
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex gap-2 mt-8">
+          {WHY_CHOOSE.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="transition-all duration-300"
+              style={{
+                height: 3,
+                width: i === current ? 32 : 12,
+                background: i === current ? "#e50023" : "#d1d5db",
+                border: "none",
+                cursor: "pointer",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -458,51 +593,7 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE US ── */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-          <ScrollReveal>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-0.5 bg-primary" />
-              <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Strengths</span>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-4xl sm:text-5xl text-secondary">WHY CHOOSE US?</h2>
-              <p className="text-gray-500 text-sm max-w-sm leading-relaxed">
-                Committed to delivering the highest standards — fully insured, CITB trained,
-                and over 30 years of trusted expertise.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
-
-        {/* Auto-scrolling infinite card strip */}
-        <div className="relative">
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: "linear-gradient(to right, white, transparent)" }} />
-          <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-            style={{ background: "linear-gradient(to left, white, transparent)" }} />
-
-          <div
-            className="flex gap-5 w-max"
-            style={{ animation: "why-scroll 32s linear infinite" }}
-          >
-            {[...WHY_CHOOSE, ...WHY_CHOOSE].map((item, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
-                transition={{ duration: 0.2 }}
-                className="bg-gray-50 border border-gray-100 p-7 cursor-default flex-shrink-0"
-                style={{ width: 280 }}
-              >
-                <div className="w-10 h-1 mb-5" style={{ background: "#e50023" }} />
-                <h3 className="text-secondary font-bold mb-3 text-base uppercase tracking-wide">{item.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyChooseSlider />
 
 
       {/* ── RECENT PROJECTS ── */}
