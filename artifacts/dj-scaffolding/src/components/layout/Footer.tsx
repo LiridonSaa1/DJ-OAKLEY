@@ -122,7 +122,7 @@ export function Footer() {
           <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} DJ Oakley Scaffolding and Access Ltd. All rights reserved.
           </p>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 flex-wrap justify-center md:justify-end">
             {/* Social icons repeat in bottom bar */}
             <div className="flex gap-3">
               {SOCIALS.map(({ label, href, icon: Icon }) => (
@@ -138,6 +138,10 @@ export function Footer() {
                 </a>
               ))}
             </div>
+            <span className="text-gray-700 text-xs">|</span>
+            <Link href="/policies/cookies-privacy-policy" className="text-xs text-gray-500 hover:text-white transition-colors">
+              Cookies &amp; Privacy Policy
+            </Link>
             <span className="text-gray-700 text-xs">|</span>
             <Link href="/admin" className="text-xs text-gray-500 hover:text-white transition-colors">Admin Login</Link>
           </div>

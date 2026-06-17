@@ -9,6 +9,7 @@ import Contact from "@/pages/contact";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import NotFound from "@/pages/not-found";
+import CookiesPrivacyPolicy from "@/pages/cookies-privacy-policy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/admin" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/policies/cookies-privacy-policy" component={CookiesPrivacyPolicy} />
       <Route component={NotFound} />
     </Switch>
   );
