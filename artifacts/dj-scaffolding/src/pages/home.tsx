@@ -265,6 +265,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── STATS CARDS ── */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { value: 30, suffix: "+", label: "Years Experience", desc: "Decades of trusted industry expertise" },
+              { value: 500, suffix: "+", label: "Projects Completed", desc: "Across East Anglia and beyond" },
+              { value: 100, suffix: "%", label: "Safety Record", desc: "Fully insured, CITB trained team" },
+              { value: 24, suffix: "/7", label: "Emergency Service", desc: "Round-the-clock rapid response" },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                className="group relative overflow-hidden bg-white border border-gray-200 p-8 flex flex-col"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -4 }}
+              >
+                {/* Top red accent bar — animates wider on hover */}
+                <div
+                  className="absolute top-0 left-0 h-1 w-full"
+                  style={{ background: "#e50023" }}
+                />
+                {/* Background fill on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "#0a0a0a" }}
+                />
+
+                <div className="relative z-10">
+                  {/* Number */}
+                  <div
+                    className="font-display leading-none mb-3 tracking-tight"
+                    style={{
+                      fontSize: "clamp(3rem, 5vw, 4.5rem)",
+                      color: "#e50023",
+                    }}
+                  >
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  </div>
+
+                  {/* Label */}
+                  <p
+                    className="font-bold uppercase tracking-widest text-xs mb-2 transition-colors duration-300 group-hover:text-white"
+                    style={{ color: "#0a0a0a", letterSpacing: "0.15em" }}
+                  >
+                    {stat.label}
+                  </p>
+
+                  {/* Divider */}
+                  <div className="w-8 h-0.5 mb-3" style={{ background: "#e50023" }} />
+
+                  {/* Description */}
+                  <p className="text-gray-500 text-sm leading-relaxed transition-colors duration-300 group-hover:text-gray-400">
+                    {stat.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── OUR SCAFFOLDING SERVICES ── */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -361,96 +425,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── STATS BANNER ── */}
-      <section className="relative overflow-hidden" style={{ background: "#0a0a0a" }}>
-        {/* Red diagonal accent bar */}
-        <div
-          className="absolute inset-y-0 left-0 w-2 sm:w-3"
-          style={{ background: "#e50023" }}
-        />
-        {/* Subtle grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        {/* Glowing red orb far left */}
-        <div
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(229,0,35,0.18) 0%, transparent 70%)",
-          }}
-        />
-
-        <div className="relative grid grid-cols-2 lg:grid-cols-4">
-          {[
-            { value: 30, suffix: "+", label: "Years Experience", icon: "🏗️" },
-            { value: 500, suffix: "+", label: "Projects Completed", icon: "📋" },
-            { value: 100, suffix: "%", label: "Safety Record", icon: "🛡️" },
-            { value: 24, suffix: "/7", label: "Emergency Service", icon: "⚡" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              className="relative flex flex-col items-center justify-center py-14 px-6 text-center group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Vertical divider (right side, not on last) */}
-              {i < 3 && (
-                <span
-                  className="absolute right-0 top-8 bottom-8 w-px hidden lg:block"
-                  style={{ background: "rgba(229,0,35,0.25)" }}
-                />
-              )}
-              {/* Horizontal divider on mobile (bottom, not on last row) */}
-              {i < 2 && (
-                <span
-                  className="absolute bottom-0 left-8 right-8 h-px block lg:hidden"
-                  style={{ background: "rgba(229,0,35,0.25)" }}
-                />
-              )}
-
-              {/* Big red accent number */}
-              <div
-                className="font-display leading-none mb-1 tracking-tight select-none"
-                style={{
-                  fontSize: "clamp(4rem, 7vw, 6.5rem)",
-                  color: "#e50023",
-                  textShadow: "0 0 40px rgba(229,0,35,0.35)",
-                }}
-              >
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-              </div>
-
-              {/* Thin red rule */}
-              <motion.div
-                className="h-0.5 mb-4 rounded-full"
-                style={{ background: "#e50023" }}
-                initial={{ width: 0 }}
-                whileInView={{ width: 48 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.12 + 0.3 }}
-              />
-
-              {/* Label */}
-              <p
-                className="font-bold uppercase tracking-widest text-xs sm:text-sm"
-                style={{ color: "rgba(255,255,255,0.6)", letterSpacing: "0.18em" }}
-              >
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bottom red bar */}
-        <div className="h-1 w-full" style={{ background: "#e50023" }} />
-      </section>
 
       {/* ── RECENT PROJECTS ── */}
       <section className="py-24 bg-secondary">
