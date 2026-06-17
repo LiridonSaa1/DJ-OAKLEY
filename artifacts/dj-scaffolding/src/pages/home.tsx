@@ -801,12 +801,13 @@ export default function Home() {
               <h3 className="text-secondary font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-primary">
                 Find Us
               </h3>
-              <div className="w-full h-56 bg-gray-100 flex items-center justify-center border border-gray-200 relative overflow-hidden">
+              <div className="w-full h-56 bg-gray-100 border border-gray-200 relative overflow-hidden">
                 <iframe
                   title="DJ Oakley Scaffolding location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2397.6!2d1.7228!3d52.5914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d9e3b5b5e5e5e5%3A0x1!2sDJ+Oakley+Scaffolding+%26+Access!5e0!3m2!1sen!2suk!4v1234567890"
+                  src="https://maps.google.com/maps?q=Unit+B+Fenner+Road,+Great+Yarmouth,+Norfolk+NR30+3AE&z=15&output=embed"
                   className="w-full h-full border-0"
                   loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
               <div className="mt-3 flex items-center gap-2 text-gray-500 text-sm">
