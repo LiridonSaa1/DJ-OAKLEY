@@ -10,6 +10,7 @@ import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import NotFound from "@/pages/not-found";
 import CookiesPrivacyPolicy from "@/pages/cookies-privacy-policy";
+import WebsiteTermsConditions from "@/pages/website-terms-conditions";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/admin" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/policies/cookies-privacy-policy" component={CookiesPrivacyPolicy} />
+      <Route path="/policies/website-terms-conditions" component={WebsiteTermsConditions} />
       <Route component={NotFound} />
     </Switch>
   );

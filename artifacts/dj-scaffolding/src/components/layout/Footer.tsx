@@ -143,6 +143,10 @@ export function Footer() {
               Cookies &amp; Privacy Policy
             </Link>
             <span className="text-gray-700 text-xs">|</span>
+            <Link href="/policies/website-terms-conditions" className="text-xs text-gray-500 hover:text-white transition-colors">
+              Terms &amp; Conditions
+            </Link>
+            <span className="text-gray-700 text-xs">|</span>
             <Link href="/admin" className="text-xs text-gray-500 hover:text-white transition-colors">Admin Login</Link>
           </div>
         </div>
