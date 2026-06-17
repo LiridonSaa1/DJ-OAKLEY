@@ -7,8 +7,7 @@ import { useListServices } from "@workspace/api-client-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const HERO_WORDS   = ["ERECTORS", "HIRE & SALES", "EXPERTS", "INSTALLERS"];
-const ABOUT_WORDS  = ["ERECTORS", "SPECIALISTS", "EXPERTS", "CONTRACTORS"];
+const HERO_WORDS = ["ERECTORS", "HIRE & SALES", "EXPERTS", "INSTALLERS"];
 
 const TICKER_ITEMS = [
   "Scaffolding hire and sales",
@@ -246,8 +245,7 @@ export default function Home() {
                 <h2 className="text-4xl sm:text-5xl text-secondary mb-8 leading-tight">
                   WHO ARE D J OAKLEY
                   <br />
-                  SCAFFOLDING{" "}
-                  <Typewriter words={ABOUT_WORDS} />?
+                  SCAFFOLDING <span className="text-primary">EXPERTS</span>?
                 </h2>
               </ScrollReveal>
 
