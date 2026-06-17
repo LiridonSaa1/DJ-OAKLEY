@@ -358,14 +358,14 @@ function ProjectsCarousel() {
         </ScrollReveal>
 
         {/* Main image */}
-        <div className="relative overflow-hidden" style={{ borderRadius: 2 }}>
+        <div className="mx-auto relative overflow-hidden" style={{ borderRadius: 2, maxWidth: 800 }}>
           <motion.div
             key={active}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
             className="relative"
-            style={{ aspectRatio: "16 / 6" }}
+            style={{ aspectRatio: "4 / 3" }}
           >
             <img
               src={current.src}
@@ -443,7 +443,7 @@ function ProjectsCarousel() {
         </div>
 
         {/* Thumbnail strip */}
-        <div className="flex gap-2 mt-3 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+        <div className="mx-auto flex gap-2 mt-3 overflow-x-auto pb-1" style={{ scrollbarWidth: "none", maxWidth: 800 }}>
           {PROJECTS.map((project, i) => (
             <button
               key={i}
