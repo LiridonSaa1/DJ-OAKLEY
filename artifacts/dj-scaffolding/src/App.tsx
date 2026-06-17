@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import ScaffoldingServices from "@/pages/scaffolding-services";
+import ScaffoldingPortfolio from "@/pages/scaffolding-portfolio";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import AdminLogin from "@/pages/admin/login";
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/services" component={Services} />
       <Route path="/scaffolding-services" component={ScaffoldingServices} />
+      <Route path="/scaffolding-portfolio" component={ScaffoldingPortfolio} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/admin" component={AdminLogin} />
