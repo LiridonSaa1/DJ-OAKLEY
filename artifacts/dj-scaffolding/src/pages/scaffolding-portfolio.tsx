@@ -265,11 +265,11 @@ export default function ScaffoldingPortfolio() {
       </AnimatePresence>
 
       {/* ── CTA STRIP ── */}
-      <section className="py-20 bg-secondary">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-12">
-              DO YOU NEED THE SERVICES OF<br />EXPERIENCED SCAFFOLDING ERECTORS?
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-secondary uppercase tracking-tight mb-4">
+              DO YOU NEED THE SERVICES OF<br /><span className="text-primary">EXPERIENCED SCAFFOLDING ERECTORS?</span>
             </h2>
             <div className="w-16 h-1 bg-primary mb-12" />
           </ScrollReveal>
@@ -277,24 +277,24 @@ export default function ScaffoldingPortfolio() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Contact Us */}
             <ScrollReveal>
-              <h3 className="text-white font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b border-white/10">
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
                 CONTACT US
               </h3>
-              <div className="space-y-4 text-gray-300 text-sm">
+              <div className="space-y-4 text-gray-600 text-sm">
                 <div>
-                  <p className="text-white font-bold mb-1">Tel:</p>
+                  <p className="text-secondary font-bold mb-1">Tel:</p>
                   <a href="tel:01493802500" className="block hover:text-primary transition-colors">01493 802500</a>
                   <a href="tel:07875344499" className="block hover:text-primary transition-colors">07875 344499</a>
                   <a href="tel:07860738293" className="block hover:text-primary transition-colors">07860 738293</a>
                 </div>
                 <div>
-                  <p className="text-white font-bold mb-1">Email:</p>
+                  <p className="text-secondary font-bold mb-1">Email:</p>
                   <a href="mailto:info@djscaffolding-greatyarmouth.co.uk" className="hover:text-primary transition-colors break-all">
                     info@djscaffolding-greatyarmouth.co.uk
                   </a>
                 </div>
                 <div>
-                  <p className="text-white font-bold mb-1">Address:</p>
+                  <p className="text-secondary font-bold mb-1">Address:</p>
                   <p>Unit B Fenner Rd Monument Estate</p>
                   <p>Great Yarmouth</p>
                   <p>NR30 3PS</p>
@@ -304,10 +304,10 @@ export default function ScaffoldingPortfolio() {
 
             {/* Find Us */}
             <ScrollReveal delay={0.1}>
-              <h3 className="text-white font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b border-white/10">
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
                 FIND US
               </h3>
-              <div className="w-full overflow-hidden" style={{ height: 200 }}>
+              <div className="w-full overflow-hidden border border-gray-200" style={{ height: 200 }}>
                 <iframe
                   title="DJ Oakley Scaffolding location"
                   src="https://maps.google.com/maps?q=Unit+B+Fenner+Road,+Great+Yarmouth,+Norfolk+NR30+3AE&z=15&output=embed"
@@ -316,7 +316,7 @@ export default function ScaffoldingPortfolio() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-              <div className="mt-3 flex items-center gap-2 text-gray-400 text-xs">
+              <div className="mt-3 flex items-center gap-2 text-gray-500 text-xs">
                 <MapPin className="w-3 h-3 text-primary flex-shrink-0" />
                 <span>Unit B Fenner Rd, Great Yarmouth, NR30 3PS</span>
               </div>
@@ -324,7 +324,7 @@ export default function ScaffoldingPortfolio() {
 
             {/* Get in Touch */}
             <ScrollReveal delay={0.2}>
-              <h3 className="text-white font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b border-white/10">
+              <h3 className="text-secondary font-black uppercase tracking-widest text-sm mb-4 pb-3 border-b-2 border-primary">
                 GET IN TOUCH
               </h3>
               <div className="space-y-2">
@@ -333,13 +333,13 @@ export default function ScaffoldingPortfolio() {
                     key={placeholder}
                     type="text"
                     placeholder={placeholder}
-                    className="w-full border border-white/10 bg-white/5 text-white placeholder-gray-500 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
+                    className="w-full border border-gray-200 text-secondary placeholder-gray-400 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
                   />
                 ))}
                 <textarea
                   placeholder="Message"
                   rows={3}
-                  className="w-full border border-white/10 bg-white/5 text-white placeholder-gray-500 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
+                  className="w-full border border-gray-200 text-secondary placeholder-gray-400 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
                 />
                 <button
                   className="w-full py-3 font-black uppercase tracking-wide text-white transition-opacity hover:opacity-90"
