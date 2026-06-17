@@ -34,15 +34,24 @@ const SERVICES = [
 
 function HeroSlider() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const total = HERO_IMAGES.length;
 
   useEffect(() => {
+    if (paused) return;
     const t = setInterval(() => setActive(i => (i + 1) % total), 5000);
     return () => clearInterval(t);
-  }, [total]);
+  }, [total, paused]);
+
+  const prev = () => setActive(i => (i - 1 + total) % total);
+  const next = () => setActive(i => (i + 1) % total);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {HERO_IMAGES.map((img, i) => (
         <motion.div
           key={i}
@@ -80,6 +89,25 @@ function HeroSlider() {
           </Link>
         </motion.div>
       </div>
+
+      {/* Prev arrow */}
+      <button
+        onClick={prev}
+        aria-label="Previous"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center transition-all duration-200 hover:scale-105"
+        style={{ width: 48, height: 48, background: "rgba(10,10,10,0.55)", border: "1px solid rgba(255,255,255,0.2)", color: "white", cursor: "pointer" }}
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      {/* Next arrow */}
+      <button
+        onClick={next}
+        aria-label="Next"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center transition-all duration-200 hover:scale-105"
+        style={{ width: 48, height: 48, background: "#e50023", border: "none", color: "white", cursor: "pointer" }}
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
 
       {/* Dot indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">

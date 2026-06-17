@@ -1,9 +1,9 @@
 import { Layout } from "@/components/layout/Layout";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Link } from "wouter";
-import { ArrowRight, ChevronRight, Phone, Mail, MapPin, X } from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft, Phone, Mail, MapPin, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CATEGORIES = ["All", "Industrial", "Commercial", "Residential"] as const;
 type Category = typeof CATEGORIES[number];
@@ -29,6 +29,80 @@ const CAT_CARDS = [
   { label: "Our Residential Scaffolding Projects", cat: "Residential" as const, count: PROJECTS.filter(p => p.cat === "Residential").length },
 ];
 
+const HERO_IMAGES = [
+  { src: "/images/hero-closeup.png",    label: "Precision Scaffolding Work" },
+  { src: "/images/hero-coastal.png",    label: "Marine & Coastal Projects" },
+  { src: "/images/hero-commercial.png", label: "Commercial Scaffolding" },
+];
+
+function HeroCarousel() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = HERO_IMAGES.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setActive(i => (i + 1) % total), 5000);
+    return () => clearInterval(t);
+  }, [total, paused]);
+
+  const prev = () => setActive(i => (i - 1 + total) % total);
+  const next = () => setActive(i => (i + 1) % total);
+
+  return (
+    <section
+      className="relative flex items-center justify-center overflow-hidden text-center"
+      style={{ minHeight: "100vh" }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {HERO_IMAGES.map((img, i) => (
+        <motion.div key={i} className="absolute inset-0" animate={{ opacity: i === active ? 1 : 0 }} transition={{ duration: 0.9 }}>
+          <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+        </motion.div>
+      ))}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.55) 100%)" }} />
+
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-40">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <div className="w-10 h-0.5 bg-primary" />
+            <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Work</span>
+            <div className="w-10 h-0.5 bg-primary" />
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
+            OUR SCAFFOLDING PROJECTS
+          </h1>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Choose D J Oakley Scaffolding Ltd in Great Yarmouth for expert industrial platform and scaffolding hire backed by years of experience.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Prev arrow */}
+      <button onClick={prev} aria-label="Previous"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center transition-all duration-200 hover:scale-105"
+        style={{ width: 48, height: 48, background: "rgba(10,10,10,0.55)", border: "1px solid rgba(255,255,255,0.2)", color: "white", cursor: "pointer" }}>
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      {/* Next arrow */}
+      <button onClick={next} aria-label="Next"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center transition-all duration-200 hover:scale-105"
+        style={{ width: 48, height: 48, background: "#e50023", border: "none", color: "white", cursor: "pointer" }}>
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        {HERO_IMAGES.map((_, i) => (
+          <button key={i} onClick={() => setActive(i)}
+            style={{ width: i === active ? 28 : 8, height: 8, borderRadius: 4, background: i === active ? "#e50023" : "rgba(255,255,255,0.4)", border: "none", cursor: "pointer", transition: "all 0.3s", padding: 0 }} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function ScaffoldingPortfolio() {
   const [active, setActive] = useState<Category>("All");
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -42,40 +116,7 @@ export default function ScaffoldingPortfolio() {
 
   return (
     <Layout>
-      {/* ── HERO ── */}
-      <section
-        className="relative flex items-center justify-center overflow-hidden text-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <img
-          src="/images/hero-closeup.png"
-          alt="Scaffolding Projects"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to bottom, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0.55) 100%)" }}
-        />
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-40">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <div className="w-10 h-0.5 bg-primary" />
-              <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Work</span>
-              <div className="w-10 h-0.5 bg-primary" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">
-              OUR SCAFFOLDING PROJECTS
-            </h1>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Choose D J Oakley Scaffolding Ltd in Great Yarmouth for expert industrial platform and scaffolding hire backed by years of experience.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <HeroCarousel />
 
       {/* ── WHO ARE WE ── */}
       <section className="py-24 bg-white">
