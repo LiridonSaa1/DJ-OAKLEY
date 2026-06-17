@@ -267,22 +267,22 @@ function WhyChooseSlider() {
                   style={{
                     width: CARD_W,
                     borderColor: isActive ? "#e50023" : "#e5e7eb",
-                    background: isActive ? "#0a0a0a" : "#f9fafb",
+                    background: "#f9fafb",
                   }}
                 >
                   <div
                     className="w-12 h-12 flex items-center justify-center mb-5"
-                    style={{ background: isActive ? "rgba(229,0,35,0.15)" : "rgba(229,0,35,0.08)" }}
+                    style={{ background: "rgba(229,0,35,0.08)" }}
                   >
                     <Icon className="w-6 h-6" style={{ color: "#e50023" }} />
                   </div>
                   <h3
                     className="font-bold mb-3 text-base uppercase tracking-wide"
-                    style={{ color: isActive ? "#ffffff" : "#0a0a0a" }}
+                    style={{ color: "#0a0a0a" }}
                   >
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: isActive ? "rgba(255,255,255,0.65)" : "#6b7280" }}>
+                  <p className="text-sm leading-relaxed" style={{ color: "#6b7280" }}>
                     {item.desc}
                   </p>
                 </motion.div>
