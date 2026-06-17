@@ -78,18 +78,18 @@ export default function ScaffoldingPortfolio() {
       </section>
 
       {/* ── WHO ARE WE ── */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
             <ScrollReveal>
-              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mb-4">
+              <h2 className="text-3xl sm:text-4xl font-black text-secondary uppercase tracking-tight mb-4">
                 WHO ARE DJ OAKLEY<br />SCAFFOLDING LTD?
               </h2>
               <div className="w-12 h-1 bg-primary mb-8" />
-              <p className="text-gray-300 leading-relaxed mb-6">
+              <p className="text-gray-600 leading-relaxed mb-6">
                 At D J Oakley Scaffolding Ltd, based in Great Yarmouth, we bring over 30 years of experience in scaffolding hire and sales. Our dedicated team of skilled professionals is not only reliable and approachable but also highly knowledgeable, ensuring we deliver services that are precisely tailored to meet the unique requirements of each client.
               </p>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 As a proud family-run business, we place great emphasis on offering a personalised and professional service, striving to exceed expectations with every project. Whether you need scaffolding for industrial, commercial, or residential purposes, our expertise allows us to provide solutions that are both efficient and safe. We are committed to maintaining the highest standards of quality and customer satisfaction, making us a trusted choice in the industry.
               </p>
             </ScrollReveal>
