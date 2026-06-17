@@ -121,6 +121,60 @@ const SERVICES_LIST = [
   "Advanced bookings",
 ];
 
+const HERO_SLIDES = [
+  { src: "/hero-bg.png",                     alt: "Scaffolding structure at night" },
+  { src: "/images/roller-coaster-scaffold.jpg", alt: "Roller Coaster project — Great Yarmouth" },
+  { src: "/images/dj-oakley-sign.jpg",        alt: "D J Oakley Scaffolding on site" },
+];
+
+function HeroCarousel() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setActive(i => (i + 1) % HERO_SLIDES.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 z-0">
+      {HERO_SLIDES.map((slide, i) => (
+        <motion.div
+          key={i}
+          className="absolute inset-0"
+          initial={false}
+          animate={{ opacity: i === active ? 1 : 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+        >
+          <div className="absolute inset-0 bg-secondary/70 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent z-10" />
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            className="w-full h-full object-cover object-center scale-105"
+          />
+        </motion.div>
+      ))}
+      {/* Slide dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className="transition-all duration-300"
+            style={{
+              width: i === active ? 28 : 8,
+              height: 4,
+              background: i === active ? "#e50023" : "rgba(255,255,255,0.35)",
+              border: "none",
+              cursor: "pointer",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const { data: services } = useListServices();
 
@@ -137,15 +191,7 @@ export default function Home() {
     <Layout>
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center pt-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-secondary/70 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent z-10" />
-          <img
-            src="/hero-bg.png"
-            alt="D J Oakley Scaffolding — scaffolding structure"
-            className="w-full h-full object-cover object-center scale-105"
-          />
-        </div>
+        <HeroCarousel />
 
         {/* Red accent line */}
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary z-20" />
@@ -409,44 +455,48 @@ export default function Home() {
       </section>
 
       {/* ── WHY CHOOSE US ── */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Left text column */}
-            <div className="lg:col-span-1">
-              <ScrollReveal>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-0.5 bg-primary" />
-                  <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Strengths</span>
-                </div>
-                <h2 className="text-4xl text-secondary mb-6">WHY CHOOSE US?</h2>
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  At DJ Oakley Scaffolding Ltd, we are committed to delivering only the highest
-                  standards in our scaffolding services. With a spotless health and safety record
-                  and a team of fully trained professionals, we provide a reliable and exceptional
-                  service you can trust, giving you complete peace of mind.
-                </p>
-              </ScrollReveal>
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <ScrollReveal>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-0.5 bg-primary" />
+              <span className="text-primary text-sm font-bold uppercase tracking-widest">Our Strengths</span>
             </div>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <h2 className="text-4xl sm:text-5xl text-secondary">WHY CHOOSE US?</h2>
+              <p className="text-gray-500 text-sm max-w-sm leading-relaxed">
+                Committed to delivering the highest standards — fully insured, CITB trained,
+                and over 30 years of trusted expertise.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
 
-            {/* Cards grid */}
-            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-              {WHY_CHOOSE.map((item, i) => (
-                <ScrollReveal key={i} delay={0.06 * i}>
-                  <motion.div
-                    whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
-                    transition={{ duration: 0.2 }}
-                    className="bg-gray-50 border border-gray-100 p-6 h-full cursor-default"
-                  >
-                    <div className="w-10 h-10 bg-primary/10 flex items-center justify-center mb-4">
-                      <div className="w-4 h-4 bg-primary rounded-full" />
-                    </div>
-                    <h3 className="text-secondary font-bold mb-2 text-base">{item.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
-                  </motion.div>
-                </ScrollReveal>
-              ))}
-            </div>
+        {/* Auto-scrolling infinite card strip */}
+        <div className="relative">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to right, white, transparent)" }} />
+          <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to left, white, transparent)" }} />
+
+          <div
+            className="flex gap-5 w-max"
+            style={{ animation: "why-scroll 32s linear infinite" }}
+          >
+            {[...WHY_CHOOSE, ...WHY_CHOOSE].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.10)" }}
+                transition={{ duration: 0.2 }}
+                className="bg-gray-50 border border-gray-100 p-7 cursor-default flex-shrink-0"
+                style={{ width: 280 }}
+              >
+                <div className="w-10 h-1 mb-5" style={{ background: "#e50023" }} />
+                <h3 className="text-secondary font-bold mb-3 text-base uppercase tracking-wide">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
