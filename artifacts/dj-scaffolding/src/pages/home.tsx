@@ -313,6 +313,165 @@ function WhyChooseSlider() {
   );
 }
 
+const PROJECTS = [
+  { src: "/images/projects/proj-1.jpg",  label: "Domestic Roofing — Norfolk" },
+  { src: "/images/projects/proj-2.jpg",  label: "Marine / Boat Refit" },
+  { src: "/images/projects/proj-3.jpg",  label: "Roller Coaster — Great Yarmouth" },
+  { src: "/images/projects/proj-4.jpg",  label: "Commercial High Street" },
+  { src: "/images/projects/proj-5.jpg",  label: "Heritage Building" },
+  { src: "/images/projects/proj-6.jpg",  label: "Industrial Warehouse" },
+  { src: "/images/projects/proj-7.jpg",  label: "Industrial Unit" },
+  { src: "/images/projects/proj-8.jpg",  label: "Covered Walkway" },
+  { src: "/images/projects/proj-9.jpg",  label: "New Build — Block Work" },
+  { src: "/images/projects/proj-10.jpg", label: "Residential Block" },
+  { src: "/images/projects/proj-11.jpg", label: "Residential Block — Phase 2" },
+  { src: "/images/projects/proj-12.jpg", label: "Roof Access — Rural" },
+];
+
+function ProjectsCarousel() {
+  const [active, setActive] = useState(0);
+  const total = PROJECTS.length;
+  const prev = () => setActive(i => (i - 1 + total) % total);
+  const next = () => setActive(i => (i + 1) % total);
+  const current = PROJECTS[active]!;
+
+  return (
+    <section className="py-24 bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <ScrollReveal>
+          <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-0.5 bg-primary" />
+                <span className="text-primary text-sm font-bold uppercase tracking-widest">Portfolio</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl text-white">OUR RECENT PROJECTS</h2>
+            </div>
+            <Link href="/services">
+              <button className="btn-ghost flex-shrink-0">
+                <span>View All Our Work</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+          </div>
+        </ScrollReveal>
+
+        {/* Main image */}
+        <div className="relative overflow-hidden" style={{ borderRadius: 2 }}>
+          <motion.div
+            key={active}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.45 }}
+            className="relative"
+            style={{ aspectRatio: "16 / 7" }}
+          >
+            <img
+              src={current.src}
+              alt={current.label}
+              className="w-full h-full object-cover"
+            />
+            {/* Bottom gradient overlay */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.1) 45%, transparent 100%)" }}
+            />
+            {/* Label */}
+            <div className="absolute bottom-0 left-0 p-6 sm:p-8">
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 mb-3 text-xs font-bold uppercase tracking-widest text-white"
+                style={{ background: "#e50023" }}
+              >
+                <span>D J Oakley — Great Yarmouth</span>
+              </div>
+              <p className="text-white text-xl sm:text-2xl font-bold uppercase tracking-wide">
+                {current.label}
+              </p>
+            </div>
+            {/* Dot indicators bottom-right */}
+            <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 flex gap-2">
+              {PROJECTS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  style={{
+                    width: i === active ? 24 : 8,
+                    height: 8,
+                    borderRadius: 4,
+                    background: i === active ? "#e50023" : "rgba(255,255,255,0.45)",
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.3s",
+                    padding: 0,
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Prev arrow */}
+          <button
+            onClick={prev}
+            aria-label="Previous"
+            className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-200"
+            style={{
+              width: 44, height: 44,
+              background: "rgba(10,10,10,0.55)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          {/* Next arrow */}
+          <button
+            onClick={next}
+            aria-label="Next"
+            className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-200"
+            style={{
+              width: 44, height: 44,
+              background: "#e50023",
+              border: "none",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Thumbnail strip */}
+        <div className="flex gap-2 mt-3 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+          {PROJECTS.map((project, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className="flex-shrink-0 relative overflow-hidden transition-all duration-200"
+              style={{
+                width: 80, height: 56,
+                outline: i === active ? "2px solid #e50023" : "2px solid transparent",
+                outlineOffset: 0,
+                padding: 0,
+                background: "none",
+                cursor: "pointer",
+                opacity: i === active ? 1 : 0.55,
+              }}
+            >
+              <img
+                src={project.src}
+                alt={project.label}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { data: services } = useListServices();
 
@@ -597,75 +756,7 @@ export default function Home() {
 
 
       {/* ── RECENT PROJECTS ── */}
-      <section className="py-24 bg-secondary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-0.5 bg-primary" />
-                  <span className="text-primary text-sm font-bold uppercase tracking-widest">Portfolio</span>
-                </div>
-                <h2 className="text-4xl sm:text-5xl text-white">OUR RECENT PROJECTS</h2>
-              </div>
-              <Link href="/services">
-                <button className="btn-ghost flex-shrink-0">
-                  <span>View All Our Work</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </Link>
-            </div>
-          </ScrollReveal>
-
-          {/* Photo grid — 4 cols desktop, 3 tablet, 2 mobile */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-            {[
-              { src: "/images/projects/proj-1.jpg",  label: "Domestic Roofing — Norfolk" },
-              { src: "/images/projects/proj-2.jpg",  label: "Marine / Boat Refit" },
-              { src: "/images/projects/proj-3.jpg",  label: "Roller Coaster — Great Yarmouth" },
-              { src: "/images/projects/proj-4.jpg",  label: "Commercial High Street" },
-              { src: "/images/projects/proj-5.jpg",  label: "Heritage Building" },
-              { src: "/images/projects/proj-6.jpg",  label: "Industrial Warehouse" },
-              { src: "/images/projects/proj-7.jpg",  label: "Industrial Unit" },
-              { src: "/images/projects/proj-8.jpg",  label: "Covered Walkway" },
-              { src: "/images/projects/proj-9.jpg",  label: "New Build — Block Work" },
-              { src: "/images/projects/proj-10.jpg", label: "Residential Block" },
-              { src: "/images/projects/proj-11.jpg", label: "Residential Block — Phase 2" },
-              { src: "/images/projects/proj-12.jpg", label: "Roof Access — Rural" },
-            ].map((project, i) => (
-              <motion.div
-                key={i}
-                className="relative overflow-hidden group"
-                style={{ aspectRatio: "1 / 1" }}
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.45, delay: (i % 4) * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <img
-                  src={project.src}
-                  alt={project.label}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Hover overlay */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
-                  style={{ background: "linear-gradient(to top, rgba(229,0,35,0.85) 0%, rgba(10,10,10,0.2) 60%, transparent 100%)" }}
-                >
-                  <p className="text-white text-xs font-bold uppercase tracking-widest p-4 leading-tight">
-                    {project.label}
-                  </p>
-                </div>
-                {/* Corner accent */}
-                <div
-                  className="absolute top-0 left-0 w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "#e50023" }}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProjectsCarousel />
 
       {/* ── CTA CONTACT STRIP ── */}
       <section className="py-20 bg-white">
