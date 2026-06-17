@@ -42,7 +42,7 @@ function HeroSlider() {
   }, [total]);
 
   return (
-    <section className="relative h-[70vh] min-h-[500px] flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {HERO_IMAGES.map((img, i) => (
         <motion.div
           key={i}
@@ -111,7 +111,7 @@ export default function ScaffoldingServices() {
       <HeroSlider />
 
       {/* ── WHO ARE WE ── */}
-      <section className="py-24 bg-secondary">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal>
@@ -119,14 +119,14 @@ export default function ScaffoldingServices() {
                 <div className="w-10 h-0.5 bg-primary" />
                 <span className="text-primary text-sm font-bold uppercase tracking-widest">About Us</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mb-6">
+              <h2 className="text-3xl sm:text-4xl font-black text-secondary uppercase tracking-tight mb-6">
                 WHO ARE DJ OAKLEY<br />SCAFFOLDING LTD?
               </h2>
               <div className="w-12 h-1 bg-primary mb-8" />
-              <p className="text-gray-300 leading-relaxed mb-6">
+              <p className="text-gray-600 leading-relaxed mb-6">
                 At D J Oakley Scaffolding Ltd, based in Great Yarmouth, we bring over 30 years of experience in scaffolding hire and sales. Our dedicated team of skilled professionals is not only reliable and approachable but also highly knowledgeable, ensuring we deliver services that are precisely tailored to meet the unique requirements of each client.
               </p>
-              <p className="text-gray-300 leading-relaxed mb-8">
+              <p className="text-gray-600 leading-relaxed mb-8">
                 As a proud family-run business, we place great emphasis on offering a personalised and professional service, striving to exceed expectations with every project. Whether you need scaffolding for industrial, commercial, or residential purposes, our expertise allows us to provide solutions that are both efficient and safe. We are committed to maintaining the highest standards of quality and customer satisfaction, making us a trusted choice in the industry.
               </p>
               <Link href="/contact">
@@ -257,13 +257,14 @@ export default function ScaffoldingServices() {
       </section>
 
       {/* ── CTA STRIP ── */}
-      <section className="py-20 bg-secondary">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-6">
-              DO YOU NEED THE SERVICES OF<br />EXPERIENCED SCAFFOLDING ERECTORS?
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-secondary uppercase tracking-tight mb-6">
+              DO YOU NEED THE SERVICES OF<br /><span className="text-primary">EXPERIENCED SCAFFOLDING ERECTORS?</span>
             </h2>
-            <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto font-medium">
+            <div className="w-24 h-1 bg-primary mx-auto mb-8" />
+            <p className="text-gray-600 text-lg mb-10 max-w-2xl mx-auto font-medium">
               Get in touch today for a free, no-obligation quote. We cover Great Yarmouth and all of East Anglia.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
@@ -275,7 +276,7 @@ export default function ScaffoldingServices() {
               </Link>
               <a
                 href="tel:01493802500"
-                className="h-14 px-10 text-base font-black uppercase tracking-wide border-2 border-white text-white hover:bg-white hover:text-secondary transition-colors flex items-center gap-2"
+                className="h-14 px-10 text-base font-black uppercase tracking-wide border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
                 <span>01493 802500</span>
