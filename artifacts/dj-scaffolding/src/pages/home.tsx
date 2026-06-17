@@ -365,7 +365,7 @@ function ProjectsCarousel() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.45 }}
             className="relative"
-            style={{ aspectRatio: "16 / 7" }}
+            style={{ aspectRatio: "16 / 6" }}
           >
             <img
               src={current.src}
