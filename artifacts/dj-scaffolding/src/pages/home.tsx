@@ -205,7 +205,7 @@ function WhyChooseSlider() {
   const STEP = CARD_W + GAP;
 
   return (
-    <section className="py-24 bg-white" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+    <section className="py-24 bg-gray-50" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header row */}
         <ScrollReveal>
@@ -244,7 +244,7 @@ function WhyChooseSlider() {
         <div className="overflow-hidden relative">
           {/* Fade right edge */}
           <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-            style={{ background: "linear-gradient(to left, white, transparent)" }} />
+            style={{ background: "linear-gradient(to left, #f9fafb, transparent)" }} />
 
           <motion.div
             className="flex"
@@ -635,7 +635,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS CARDS ── */}
-      <section className="py-16 bg-white border-t border-gray-100">
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {[
@@ -646,49 +646,40 @@ export default function Home() {
             ].map((stat, i) => (
               <motion.div
                 key={i}
-                className="group relative overflow-hidden bg-white border border-gray-200 p-8 flex flex-col"
+                className="group relative overflow-hidden border border-white/10 p-8 flex flex-col"
+                style={{ background: "rgba(255,255,255,0.04)" }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -4 }}
               >
-                {/* Top red accent bar — animates wider on hover */}
+                {/* Top red accent bar */}
                 <div
                   className="absolute top-0 left-0 h-1 w-full"
                   style={{ background: "#e50023" }}
                 />
-                {/* Background fill on hover */}
+                {/* Hover fill */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: "#0a0a0a" }}
+                  style={{ background: "rgba(229,0,35,0.08)" }}
                 />
 
                 <div className="relative z-10">
-                  {/* Number */}
                   <div
                     className="font-display leading-none mb-3 tracking-tight"
-                    style={{
-                      fontSize: "clamp(3rem, 5vw, 4.5rem)",
-                      color: "#e50023",
-                    }}
+                    style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)", color: "#e50023" }}
                   >
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
-
-                  {/* Label */}
                   <p
-                    className="font-bold uppercase tracking-widest text-xs mb-2 transition-colors duration-300 group-hover:text-white"
-                    style={{ color: "#0a0a0a", letterSpacing: "0.15em" }}
+                    className="font-bold uppercase tracking-widest text-xs mb-2 text-white"
+                    style={{ letterSpacing: "0.15em" }}
                   >
                     {stat.label}
                   </p>
-
-                  {/* Divider */}
                   <div className="w-8 h-0.5 mb-3" style={{ background: "#e50023" }} />
-
-                  {/* Description */}
-                  <p className="text-gray-500 text-sm leading-relaxed transition-colors duration-300 group-hover:text-gray-400">
+                  <p className="text-gray-400 text-sm leading-relaxed">
                     {stat.desc}
                   </p>
                 </div>
@@ -699,7 +690,7 @@ export default function Home() {
       </section>
 
       {/* ── OUR SCAFFOLDING SERVICES ── */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="right">
