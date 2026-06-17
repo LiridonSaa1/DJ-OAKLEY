@@ -7,21 +7,26 @@ import { useListServices } from "@workspace/api-client-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const TYPEWRITER_WORDS = [
-  "ERECTORS",
-  "HIRE & SALES",
-  "EXPERTS",
-  "INSTALLERS",
+const HERO_WORDS   = ["ERECTORS", "HIRE & SALES", "EXPERTS", "INSTALLERS"];
+const ABOUT_WORDS  = ["ERECTORS", "SPECIALISTS", "EXPERTS", "CONTRACTORS"];
+
+const TICKER_ITEMS = [
+  "Scaffolding hire and sales",
+  "Erection and dismantling services",
+  "Temporary roofs",
+  "Design works",
+  "Heritage scaffolding",
+  "Advanced bookings",
 ];
 
-function Typewriter() {
+function Typewriter({ words }: { words: string[] }) {
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
-  const word = TYPEWRITER_WORDS[wordIndex];
-  const displayed = word.slice(0, charIndex);
+  const word = words[wordIndex % words.length] ?? words[0];
+  const displayed = (word ?? "").slice(0, charIndex);
 
   useEffect(() => {
     if (isPaused) {
@@ -31,36 +36,41 @@ function Typewriter() {
     const speed = isDeleting ? 55 : 110;
     const t = setTimeout(() => {
       if (!isDeleting) {
-        if (charIndex < word.length) {
-          setCharIndex(c => c + 1);
-        } else {
-          setIsPaused(true);
-        }
+        if (charIndex < word.length) { setCharIndex(c => c + 1); }
+        else { setIsPaused(true); }
       } else {
-        if (charIndex > 0) {
-          setCharIndex(c => c - 1);
-        } else {
-          setIsDeleting(false);
-          setWordIndex(w => (w + 1) % TYPEWRITER_WORDS.length);
-        }
+        if (charIndex > 0) { setCharIndex(c => c - 1); }
+        else { setIsDeleting(false); setWordIndex(w => (w + 1) % words.length); }
       }
     }, speed);
     return () => clearTimeout(t);
-  }, [charIndex, isDeleting, isPaused, word.length]);
+  }, [charIndex, isDeleting, isPaused, word.length, words]);
 
   return (
     <span className="text-primary">
       {displayed}
       <span
         className="inline-block align-middle ml-1"
-        style={{
-          width: "3px",
-          height: "0.8em",
-          background: "#e50023",
-          animation: "blink 1s step-end infinite",
-        }}
+        style={{ width: "3px", height: "0.8em", background: "#e50023", animation: "blink 1s step-end infinite" }}
       />
     </span>
+  );
+}
+
+const TICKER_STRIP = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
+
+function ServicesTicker() {
+  return (
+    <div className="overflow-hidden py-3 relative" style={{ background: "#0a0a0a", borderTop: "1px solid rgba(229,0,35,0.2)", borderBottom: "1px solid rgba(229,0,35,0.2)" }}>
+      <div className="flex whitespace-nowrap" style={{ animation: "ticker-scroll 38s linear infinite" }}>
+        {TICKER_STRIP.map((item, i) => (
+          <span key={i} className="inline-flex items-center text-sm font-semibold tracking-wide px-5" style={{ color: "rgba(255,255,255,0.75)" }}>
+            {item}
+            <span className="mx-5" style={{ color: "#e50023" }}>◆</span>
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -161,7 +171,7 @@ export default function Home() {
             >
               SCAFFOLDING
               <br />
-              <Typewriter />
+              <Typewriter words={HERO_WORDS} />
             </motion.h1>
 
             <motion.p
@@ -220,6 +230,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── SERVICES TICKER ── */}
+      <ServicesTicker />
+
       {/* ── WHO ARE WE ── */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -230,10 +243,11 @@ export default function Home() {
                   <div className="w-10 h-0.5 bg-primary" />
                   <span className="text-primary text-sm font-bold uppercase tracking-widest">About Us</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl text-secondary mb-8">
+                <h2 className="text-4xl sm:text-5xl text-secondary mb-8 leading-tight">
                   WHO ARE D J OAKLEY
                   <br />
-                  SCAFFOLDING LTD?
+                  SCAFFOLDING{" "}
+                  <Typewriter words={ABOUT_WORDS} />?
                 </h2>
               </ScrollReveal>
 

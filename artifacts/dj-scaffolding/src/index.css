@@ -202,6 +202,12 @@
   50% { opacity: 0; }
 }
 
+/* ── Infinite ticker scroll ── */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ── DJ Oakley Brand Buttons ── */
 @layer components {
   /* Primary: solid red, slides to black on hover with red glow */
