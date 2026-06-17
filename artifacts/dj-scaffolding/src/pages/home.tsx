@@ -122,9 +122,12 @@ const SERVICES_LIST = [
 ];
 
 const HERO_SLIDES = [
-  { src: "/hero-bg.png",                     alt: "Scaffolding structure at night" },
-  { src: "/images/roller-coaster-scaffold.jpg", alt: "Roller Coaster project — Great Yarmouth" },
-  { src: "/images/dj-oakley-sign.jpg",        alt: "D J Oakley Scaffolding on site" },
+  { src: "/hero-bg.png",                          alt: "Scaffolding structure at night" },
+  { src: "/images/hero-commercial.png",           alt: "Commercial scaffolding at dusk" },
+  { src: "/images/roller-coaster-scaffold.jpg",   alt: "Roller Coaster project — Great Yarmouth" },
+  { src: "/images/hero-coastal.png",              alt: "Coastal scaffolding, Norfolk" },
+  { src: "/images/dj-oakley-sign.jpg",            alt: "D J Oakley Scaffolding on site" },
+  { src: "/images/hero-closeup.png",              alt: "Scaffolding steel detail" },
 ];
 
 function HeroCarousel() {

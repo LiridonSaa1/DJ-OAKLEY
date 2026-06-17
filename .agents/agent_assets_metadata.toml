@@ -6,3 +6,21 @@ id = "owpDZTSm8ZLDkyF4BYw33"
 uri = "file://artifacts/dj-scaffolding/public/hero-bg.png"
 type = "image"
 title = "Dramatic scaffolding against Norfolk sky"
+
+[[generated]]
+id = "ek4whfzl0AdqstbgP3Fsf"
+uri = "file://artifacts/dj-scaffolding/public/images/hero-commercial.png"
+type = "image"
+title = "commercial scaffolding dusk"
+
+[[generated]]
+id = "KNDNRLaN72URGPdHWGvdT"
+uri = "file://artifacts/dj-scaffolding/public/images/hero-coastal.png"
+type = "image"
+title = "coastal scaffolding stormy"
+
+[[generated]]
+id = "RmVialRGEApP0dXwCOkYJ"
+uri = "file://artifacts/dj-scaffolding/public/images/hero-closeup.png"
+type = "image"
+title = "scaffolding tubes low angle"
