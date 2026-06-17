@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
+import ScaffoldingServices from "@/pages/scaffolding-services";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import AdminLogin from "@/pages/admin/login";
@@ -26,6 +27,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/services" component={Services} />
+      <Route path="/scaffolding-services" component={ScaffoldingServices} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/admin" component={AdminLogin} />

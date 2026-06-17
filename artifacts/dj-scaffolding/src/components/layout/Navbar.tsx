@@ -19,7 +19,7 @@ export function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Scaffolding Services" },
+    { href: "/scaffolding-services", label: "Scaffolding Services" },
     { href: "/about", label: "Scaffolding Portfolio" },
     { href: "/contact", label: "Contact" },
   ];
